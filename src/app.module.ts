@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 
 import { PrismaModule } from './common/prisma/prisma.module';
+import { RedisModule } from './common/redis/redis.module';
 
 import { HealthModule } from './health/health.module';
 
@@ -14,6 +15,7 @@ import { HealthModule } from './health/health.module';
       isGlobal: true,
     }),
     PrismaModule,
+    RedisModule,
     HealthModule,
   ],
   controllers: [AppController],
