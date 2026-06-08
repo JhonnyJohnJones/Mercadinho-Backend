@@ -6,12 +6,15 @@ import { AppController } from './app.controller';
 
 import { PrismaModule } from './common/prisma/prisma.module';
 
+import { HealthModule } from './health/health.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
     PrismaModule,
+    HealthModule,
   ],
   controllers: [AppController],
 })
