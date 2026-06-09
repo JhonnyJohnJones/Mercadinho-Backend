@@ -9,19 +9,19 @@ async function main() {
 
   switch (environment) {
     case 'development':
-      await import('./modules/development').then((module) =>
+      await import('./modules/development/index.js').then((module) =>
         module.developmentSeed(prisma),
       );
       break;
 
     case 'staging':
-      await import('./modules/staging').then((module) =>
+      await import('./modules/staging/index.js').then((module) =>
         module.stagingSeed(prisma),
       );
       break;
 
     case 'production':
-      await import('./modules/production').then((module) =>
+      await import('./modules/production/index.js').then((module) =>
         module.productionSeed(prisma),
       );
       break;

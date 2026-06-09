@@ -1,11 +1,8 @@
 import { ValidationPipe } from '@nestjs/common';
-
 import { NestFactory } from '@nestjs/core';
-
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 import pinoHttp from 'pino-http';
-
 import pino from 'pino';
 
 import { correlationIdMiddleware } from './common/middleware/correlation-id.middleware';
@@ -15,6 +12,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { AppModule } from './app.module';
 
 import { PrismaService } from './common/prisma/prisma.service';
+import { setupSwagger } from './common/swagger/swagger.config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -56,6 +54,8 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new HttpExceptionFilter());
+
+  setupSwagger(app);
 
   await app.listen(process.env.PORT ?? 3000);
 }
