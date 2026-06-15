@@ -4,6 +4,8 @@ services:
       context: ../..
       dockerfile: docker/app/Dockerfile
 
+    command: pnpm start:dev
+
     container_name: mercadinho-api
 
     ports:
