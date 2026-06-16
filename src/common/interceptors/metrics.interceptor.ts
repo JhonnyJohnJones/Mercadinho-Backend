@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access2 */
-/* eslint-disable @typescript-eslint/no-unsafe-call2 */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment2 */
 import {
   Injectable,
   NestInterceptor,
   ExecutionContext,
   CallHandler,
 } from '@nestjs/common';
+
+import { Request, Response } from 'express';
 
 import { Observable, tap } from 'rxjs';
 
@@ -21,9 +20,9 @@ export class MetricsInterceptor implements NestInterceptor {
 
     next: CallHandler,
   ): Observable<unknown> {
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<Request>();
 
-    const response = context.switchToHttp().getResponse();
+    const response = context.switchToHttp().getResponse<Response>();
 
     const start = performance.now();
 
@@ -31,9 +30,12 @@ export class MetricsInterceptor implements NestInterceptor {
       tap(() => {
         const duration = (performance.now() - start) / 1000;
 
+        const route =
+          (request.route as { path?: string } | undefined)?.path ?? request.url;
+
         const labels = {
           method: request.method,
-          route: request.route?.path ?? request.url,
+          route,
           status_code: response.statusCode.toString(),
         };
 
