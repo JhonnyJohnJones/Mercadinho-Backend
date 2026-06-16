@@ -19,7 +19,7 @@ async function bootstrap() {
 
   const prismaService = app.get(PrismaService);
 
-  await prismaService.enableShutdownHooks(app);
+  prismaService.enableShutdownHooks(app);
 
   app.use(correlationIdMiddleware);
 
@@ -60,4 +60,7 @@ async function bootstrap() {
   await app.listen(process.env.PORT ?? 3000);
 }
 
-bootstrap();
+bootstrap().catch((error: unknown) => {
+  console.error('Application failed to start', error);
+  process.exit(1);
+});
