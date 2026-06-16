@@ -1,0 +1,18 @@
+services:
+  prometheus:
+    image: prom/prometheus
+
+    container_name: mercadinho-prometheus
+
+    ports:
+      - '9090:9090'
+
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+    networks:
+      - mercadinho-network
+
+networks:
+  mercadinho-network:
+    driver: bridge

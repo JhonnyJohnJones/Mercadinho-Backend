@@ -2,3 +2,5 @@ include:
   - ./app/compose.yml
   - ./postgres/compose.yml
   - ./redis/compose.yml
+  - ./prometheus/compose.yml
+  - ./grafana/compose.yml
