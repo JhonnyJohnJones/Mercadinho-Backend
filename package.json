@@ -1,8 +1,8 @@
 {
-  "name": "backend",
+  "name": "backend-mercadinho",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Production-ready backend for an electronics marketplace, featuring NestJS, Prisma ORM, PostgreSQL, Redis, observability, and modern DevOps practices.",
+  "author": "JhonnyJohnJones",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
