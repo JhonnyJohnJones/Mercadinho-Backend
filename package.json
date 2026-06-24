@@ -88,12 +88,5 @@
   },
   "prisma": {
     "seed": "tsx prisma/seed/index.ts"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@prisma/client",
-      "@prisma/engines",
-      "prisma"
-    ]
   }
 }
